@@ -1,0 +1,230 @@
+.navbar{
+    left: 0px;
+    background-color: #1f458d;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 14px;
+
+}
+
+.bottom-bar{
+    background-color: rgba(7, 116, 240, 0.096);
+    margin-top: 150px;
+    padding: 10px 0px;
+}
+.bottom-bar p{
+    text-align: center;
+}
+
+.navbar{
+  margin: 40px 0px;
+}
+.navbar li {
+  display: inline;
+  text-align: center;
+}
+.navbar li a{
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.3em;
+}
+.navbar li a:hover{
+  text-decoration: underline;
+}
+.navbar .active{
+  color:white;
+  text-decoration: underline;
+}
+.title{
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.main{
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+
+form{
+  text-align: center;
+}
+
+.lista{
+  margin: 0 0;
+  width: 100%;
+  border-collapse:collapse;
+  border-color:#ccc;
+  border-spacing:0;
+}
+.lista td{
+  background-color:#fff;
+  border-color:#ccc;
+  border-style:solid;
+  border-width:1px;
+  color:#333;
+  font-size: 1.25em;
+}
+.lista th{
+  background-color:#f0f0f0;
+  border-color:#ccc;
+  border-style:solid;
+  border-width:1px;
+  color:#333;
+  font-family:Arial, sans-serif;
+  font-size:1.5em;
+  font-weight:normal;
+  overflow:hidden;
+  padding:10px 5px;
+  word-break:normal;
+  }
+  .tg td{
+    text-align:left;
+    vertical-align:top;
+  }
+  .Contact label {
+    display: block;
+  }
+  h2{
+    font-size: 2em;
+  }
+  h1{
+    font-size: 2.5em;
+  }
+  p, .pub li{
+    font-size: 1.5em;
+  }
+
+.main-container{
+  display:flex;
+}
+.main-content{
+margin-right: 15%;
+
+}
+.main-news{
+  border-style: solid;
+  border-color: #a044bd;
+  padding: 30px;
+}
+input.button{
+  margin: 10px 10px;
+  border-style: unset;
+  background-color: #9260a1;
+  color: white;
+}
+input:hover.button{
+  margin: 10px 10px;
+  border-style: unset;
+  background-color: #6e0c8c;
+  color: white;
+}
+
+.TextInputS{
+  text-align: start;
+  display: block;
+  width: auto;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+}
+
+.TextInputS[contenteditable]:empty::before {
+  content: "Placeholder still possible";
+  color: gray;
+}
+.login-form *{
+    margin: 10px 5px;
+}
+
+.input,
+.TextInputS {
+  text-align: start;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: inset;
+}
+
+.image-container{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.img-item{
+    flex-grow: 1;
+    display: contents;
+    
+}
+.image-container img{
+    width: 20%;
+    height: auto;
+    margin: 20px;
+    cursor: zoom-in;
+}
+
+
+
+/* pentru imaginile fulscreen ! */
+.fullscreen{
+    display: block;
+    position: fixed;
+
+    width: 500px;
+    height: 200px;
+    top: 40%;
+    left: 50%;
+    margin-top: -100px; 
+    margin-left: -250px;
+    z-index: 2;
+    
+ 
+}
+
+.transparancy{
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 0;
+    border: 0;
+    margin: 0;
+    top:-8px;
+    left:-8px;
+    position: fixed;
+    width: 105%;
+    height: 105%;
+    z-index: 1;
+
+}
+
+.fullscreen img{
+    width: 100%;
+    cursor: initial; 
+}
+
+.fullscreen img:hover{
+    transform: scale(1);
+}
+.svg_button{
+    position: fixed;
+    right: 5%;
+    top: 5%;
+    height: 5%;
+    z-index: 3;
+}
+/* END*/
+
+.inlineTile{
+  display: inline-block;
+  padding: 10px;
+}
+
+.sectiuneRow{
+  margin-left: auto;
+  margin-right: auto;
+}
