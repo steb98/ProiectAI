@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 03, 2021 at 05:24 PM
+-- Generation Time: May 18, 2021 at 06:13 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -22,6 +22,31 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `proiectai_biblioteca` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `proiectai_biblioteca`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `anunturi`
+--
+
+DROP TABLE IF EXISTS `anunturi`;
+CREATE TABLE IF NOT EXISTS `anunturi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `anunt` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `anunturi`
+--
+
+INSERT INTO `anunturi` (`id`, `anunt`, `timestamp`) VALUES
+(1, 'Incepand de maine, 17.05.2021 Biblioteca se va redeschide!', '2021-05-16 06:15:00'),
+(2, 'De astazi puteti folosi calculatoarele din biblioteca pentru a lectura biblioteca tehnica digitala.', '2021-05-17 07:00:00'),
+(3, 'aaa', '2021-05-17 14:35:37'),
+(4, 'aaa', '2021-05-17 14:36:04'),
+(5, 'anunt', '2021-05-18 17:22:36');
 
 -- --------------------------------------------------------
 
