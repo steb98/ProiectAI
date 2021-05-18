@@ -3,9 +3,12 @@
 
 <?php
 
-  include "header.php";
+	require "header.php";
+	require "Database.class.php";
 
+	$anunturi = (new Database)->getAnunturi();
 
+	session_start();
 ?>
 
     <div class="main-container">
@@ -26,8 +29,24 @@
     <div class="main-news">
       <ul style="padding:0";">
       <h2>Anunturi</h2>
-      <li>Anunt 1 </li>
-      <li>Anuntul 2 este mai lung decat primul anunt</li>
+      
+      <?php
+			foreach($anunturi as $anunt){
+				$text = "<li>" . $anunt->getAnunt() . "<br>posted: " . $anunt->getTimestamp() . "</li>";
+				print($text);
+			}
+       ?>
+
+	   <?php
+			if(isset($_SESSION["loggedin_user"])){
+				if($_SESSION["loggedin_role"] === "admin"){
+					$html = '<form action = "http://localhost/ProiectAI/add_anunt.php">';
+					$html = $html . '<button type="submit">Adauga anunt</button></form>';
+					print($html);
+				}
+					
+			}
+	   ?>
       
       </ul>
     </div>
