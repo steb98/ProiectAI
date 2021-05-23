@@ -28,7 +28,7 @@
         <div data-value="Informatica" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/informatica.svg" class="rowImage" height="75px" role="presentation">
+            <a href="/lista.php?category=Informatica"><img alt src="images/icons/informatica.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -42,7 +42,7 @@
         <div data-value="Mecanica" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/mecanica.svg" class="rowImage" height="75px" role="presentation">
+		  <a href="/lista.php?category=Mecanica"><img alt src="images/icons/mecanica.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -56,7 +56,7 @@
         <div data-value="Chimie" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/chimie.svg" class="rowImage" height="75px" role="presentation">
+		  <a href="/lista.php?category=Chimie"><img alt src="images/icons/chimie.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -70,7 +70,7 @@
         <div data-value="Automotive" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/auto.svg" class="rowImage" height="75px" role="presentation">
+		  <a href="/lista.php?category=Automotive"><img alt src="images/icons/auto.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -84,7 +84,7 @@
         <div data-value="Constructii" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/constructii.svg" class="rowImage" height="75px" role="presentation">
+		  <a href="/lista.php?category=Constructii"><img alt src="images/icons/constructii.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -98,7 +98,7 @@
         <div data-value="Electrica" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/electrica.svg" class="rowImage" height="75px" role="presentation">
+		  <a href="/lista.php?category=Electronica"><img alt src="images/icons/electrica.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -112,7 +112,7 @@
         <div data-value="Arhitectura" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/arhitectura.svg" class="rowImage" height="75px" role="presentation">
+		  <a href="/lista.php?category=Arhitectura"><img alt src="images/icons/arhitectura.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -126,7 +126,7 @@
         <div data-value="Hidrotehnica" class="row">
 
           <div class="sectiuneRow">
-            <img alt src="images/icons/hidro.svg" class="rowImage" height="75px" role="presentation">
+		  <a href="/lista.php?category=Hidrotehnica"><img alt src="images/icons/hidro.svg" class="rowImage" height="75px" role="presentation"></a>
           </div>
 
             <div class="sectiuneTitlu">
@@ -167,18 +167,50 @@
 	//generare linii tabel
 
 	foreach($carti as $carte){
-		$table = $table . '<tr>';
-		$table = $table . '<td>' . $carte->getTitle() . '</td>';
-		$table = $table . '<td>' . $carte->getAuthor() . '</td>';
-		$table = $table . '<td>' . $carte->getPublisher() . '</td>';
-		$table = $table . '<td>' . $carte->getAvailability() . '</td>';
-		$table = $table . '<td>' . $carte->getCategory() . '</td>';
-		if(isset($_SESSION["loggedin_role"])){
-			if($_SESSION["loggedin_role"] == "admin"){
-				$table = $table . '<td>buton</td>';
+		if(isset($_GET["category"])){
+			$category = $_GET["category"];
+			if($carte->getCategory() == $category)
+			{
+				$table = $table . '<tr>';
+				$table = $table . '<td>' . $carte->getTitle() . '</td>';
+				$table = $table . '<td>' . $carte->getAuthor() . '</td>';
+				$table = $table . '<td>' . $carte->getPublisher() . '</td>';
+				$table = $table . '<td>' . $carte->getAvailability() . '</td>';
+				$table = $table . '<td>' . $carte->getCategory() . '</td>';
+				if(isset($_SESSION["loggedin_role"])){
+					if($_SESSION["loggedin_role"] == "admin"){
+						$id = $carte->getId();
+						if($carte->getAvailability() != '0'){
+							$table = $table . '<td><a href = /imprumuta.php?id='.$id.'>Imprumuta</a></td>';
+						}else{
+							$table = $table . '<td>Carte indisponibila</td>';
+						}
+							
 			}
 		}
 		$table = $table . '</tr>';
+
+			}
+		}else{
+			$table = $table . '<tr>';
+			$table = $table . '<td>' . $carte->getTitle() . '</td>';
+			$table = $table . '<td>' . $carte->getAuthor() . '</td>';
+			$table = $table . '<td>' . $carte->getPublisher() . '</td>';
+			$table = $table . '<td>' . $carte->getAvailability() . '</td>';
+			$table = $table . '<td>' . $carte->getCategory() . '</td>';
+			if(isset($_SESSION["loggedin_role"])){
+				if($_SESSION["loggedin_role"] == "admin"){
+					$id = $carte->getId();
+					if($carte->getAvailability() != '0'){
+						$table = $table . '<td><a href = /imprumuta.php?id='.$id.'>Imprumuta</a></td>';
+					}else{
+						$table = $table . '<td>Carte indisponibila</td>';
+					}
+				}
+			}
+			$table = $table . '</tr>';
+		}
+		
 	}
 
 	$table = $table . '</tbody>';

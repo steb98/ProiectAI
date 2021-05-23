@@ -19,7 +19,6 @@
 
 <?php
     if( isset($_POST["anunt"]) ){
-        print("intrat in post");
         $anunt = $_POST["anunt"];
         $sql = 'INSERT INTO anunturi(anunt) VALUES (:anunt)';
         $pdo = (new Database())->getConn();

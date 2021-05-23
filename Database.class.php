@@ -38,4 +38,11 @@ class Database
         return $listaCarti;
 
     }
+    public static function getBookById($id){
+        $sql = "SELECT * from books where id = ". $id;
+        $conn = self::getConn();
+        return $conn->query($sql)->fetch();
+
+    }
+    
 }
