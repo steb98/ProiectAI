@@ -63,7 +63,6 @@
   <h2>Login</h2>
   <label for="username">Username</label>
   <input name = "username" type="text" id="username"></br>
-
   <label for="password">Password</label>
   <input name="password" type="password" id="password"></br>
   <input class="button" type="submit">

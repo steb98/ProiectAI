@@ -1,6 +1,7 @@
 <?php
 require "Anunturi.class.php";
 require "Book.class.php";
+require "User.class.php";
 
 class Database
 {
