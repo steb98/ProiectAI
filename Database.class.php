@@ -1,5 +1,6 @@
 <?php
 require "Anunturi.class.php";
+require "Book.class.php";
 
 class Database
 {
@@ -25,6 +26,16 @@ class Database
             $listaAnunt[] = new Anunt($row);
         }
         return $listaAnunt;
+
+    }
+    public static function getBooks(){
+        $listCarti = [];
+        $sql = "SELECT * from books";
+        $conn = self::getConn();
+        foreach ($conn->query($sql) as $row) {
+            $listaCarti[] = new Book($row);
+        }
+        return $listaCarti;
 
     }
 }

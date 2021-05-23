@@ -4,6 +4,12 @@
 <?php
 
   include "header.php";
+  //require "Book.class.php";
+  require "Database.class.php";
+
+  session_start();
+
+  $carti = (new Database)->getBooks();
 
   
 ?>
@@ -138,43 +144,52 @@
   </br>
 
 
+<?php
+	//inceput tabel
+	$table = "<form>";
 
-<form>
-    <table class = "lista">
-<thead>
-  <tr>
-    <th>Titlu</th>
-    <th>Autor</th>
-    <th>Publicatie</th>
-    <th>Disponibile</th>
-    <th>Imprumuta</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Amintiri din copilarie</td>
-    <td>Ion Creanga</td>
-    <td>Gramar</td>
-    <td>3</td>
-    <td><input class="button" type="submit" value="Imprumuta"></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-</tbody>
-</table>
-</form>
+	$table =$table . '<table class = "lista"> <thead> <tr>';
+	//generare head tabel
+	$table = $table . '<th>Titlu</th>';
+	$table = $table . '<th>Autor</th>';
+	$table = $table . '<th>Publicatie</th>';
+	$table = $table . '<th>Disponibilitate</th>';
+	$table = $table . '<th>Categorie</th>';
+	if(isset($_SESSION["loggedin_role"])){
+		if($_SESSION["loggedin_role"] == "admin"){
+			$table = $table . '<th>Imprumuta</th>';
+		}
+	}
+	$table = $table . '</tr></thead>';
+	//inceput body tabel
+	$table = $table . '<tbody>';
+
+	//generare linii tabel
+
+	foreach($carti as $carte){
+		$table = $table . '<tr>';
+		$table = $table . '<td>' . $carte->getTitle() . '</td>';
+		$table = $table . '<td>' . $carte->getAuthor() . '</td>';
+		$table = $table . '<td>' . $carte->getPublisher() . '</td>';
+		$table = $table . '<td>' . $carte->getAvailability() . '</td>';
+		$table = $table . '<td>' . $carte->getCategory() . '</td>';
+		if(isset($_SESSION["loggedin_role"])){
+			if($_SESSION["loggedin_role"] == "admin"){
+				$table = $table . '<td>buton</td>';
+			}
+		}
+		$table = $table . '</tr>';
+	}
+
+	$table = $table . '</tbody>';
+	$table = $table . '</table>';
+	$table = $table . '</form>';
+
+
+	print($table);
+?>
+
+
     </div>
     <?php include "footer.php" ?>
   </body>
