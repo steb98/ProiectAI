@@ -68,6 +68,7 @@
   <input name="password" type="password" id="password"></br>
   <input class="button" type="submit">
   {$err}
+  <p> Not yet an user? <a href=/register.php> Register here </a>
   </form>
 
   LODDEDIN;
@@ -82,7 +83,9 @@
     <form  class="login-form" method="POST">
     <p> {$err} </p>
     <input name="logout" value="logout1" class="button" type="submit">
+    <p> Register a new account <a href = "/register.php">here</a> </p>
     </form>
+    
     LODDEDOUT;
     echo $p;
 
