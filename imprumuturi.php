@@ -19,7 +19,10 @@
 	$table = $table . '</tr></thead>';
 	//inceput body tabel
 	$table = $table . '<tbody>';
-	session_start();
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
     if(!isset($_SESSION["loggedin_user"])){
         $err = "Trebuie sa fiti logati pentru a putea vedea cartile imprumutate";
     }else{

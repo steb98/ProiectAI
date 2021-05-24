@@ -3,7 +3,10 @@
 
 <?php
 
-    session_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
     require "Database.class.php";
 
     if ( isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["role"]))  {

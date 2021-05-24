@@ -8,7 +8,10 @@
 
 
 <?php
-    session_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
     
     $file = $_SERVER['SCRIPT_NAME'];
     $file = basename($file,".php");

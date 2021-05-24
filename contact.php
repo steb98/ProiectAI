@@ -4,7 +4,10 @@
 
 	include "header.php";
 	include "Database.class.php";
-	session_start();
+	if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
 	if(isset($_POST["nume"])){
 		if(isset($_SESSION["loggedin_user"])){

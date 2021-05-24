@@ -7,7 +7,10 @@
   //require "Book.class.php";
   require "Database.class.php";
 
-  session_start();
+  if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
   $carti = (new Database)->getBooks();
 

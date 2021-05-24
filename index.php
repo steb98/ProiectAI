@@ -2,7 +2,10 @@
 <html>
 
 <?php
-  session_start();
+  if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 	require "header.php";
 	require "Database.class.php";
 

@@ -5,7 +5,10 @@
 
   include "header.php";
   require "Database.class.php";
-  session_start();
+  if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
   
 
   $err="";
@@ -16,6 +19,7 @@
     unset($_SESSION["loggedin_user"]);
     unset($_SESSION["loggedin_role"]);
     session_destroy();
+    header("Location: login.php");
   }
 
   if(isset($_SESSION["loggedin_user"])){
@@ -38,6 +42,7 @@
                 $_SESSION["loggedin_user"] = $row["id"];
                 $_SESSION["loggedin_role"] = $row["role"];
                 $err = "userul ".$_SESSION["loggedin_user"]." este logat";
+                header("Location: login.php");
               }else{
                 $err = "Logare esuata. Verifica parola si/sau userul";
               }
