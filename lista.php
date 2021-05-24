@@ -3,7 +3,7 @@
 
 <?php
 
-  include "header.php";
+  require "header.php";
   //require "Book.class.php";
   require "Database.class.php";
 

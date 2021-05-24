@@ -8,6 +8,8 @@
 
 
 <?php
+    session_start();
+    
     $file = $_SERVER['SCRIPT_NAME'];
     $file = basename($file,".php");
 
@@ -16,8 +18,9 @@
     $array["imprumuturi"] = 0;
     $array["contact"] = 0;
     $array["login"] = 0;
-
+    $array["problem_list"] = 0;
     $array[$file] = 1;
+
 
     ?>
 
@@ -44,14 +47,37 @@
                     if($array["lista"] == 1)
                         echo('class="active"') ;
                     ?>href="lista.php">Lista carti</a></li>
-        <li><a <?php
-                    if($array["imprumuturi"] == 1)
-                        echo('class="active"') ;
-                    ?> href="imprumuturi.php">Imprumuturi</a></li>
+
+        <?php
+        
+            if(isset($_SESSION["loggedin_role"])){
+                $class='';
+                print('<li><a href="imprumuturi.php"');
+                if($array["problem_list"] == 1)
+                    $class ='class="active"';
+                print('>');
+                print("Imprumuturi");
+                print('</a></li>');
+            }
+        ?>
+
+
+
         <li><a <?php
                     if($array["contact"] == 1)
                         echo('class="active"') ;
                     ?> href="contact.php">Contact</a></li>
+        <?php
+            if(isset($_SESSION["loggedin_role"]) && $_SESSION["loggedin_role"] == "admin"){
+                $class='';
+                print('<li><a href="problem_list.php"');
+                if($array["problem_list"] == 1)
+                    $class ='class="active"';
+                print('>');
+                print("Problem List");
+                print('</a></li>');
+            }
+        ?>
         <li><a <?php
                     if($array["login"] == 1)
                         echo('class="active"') ;

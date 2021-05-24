@@ -2,13 +2,13 @@
 <html>
 
 <?php
-
+  session_start();
 	require "header.php";
 	require "Database.class.php";
 
 	$anunturi = (new Database)->getAnunturi();
 
-	session_start();
+	
 ?>
 
     <div class="main-container">

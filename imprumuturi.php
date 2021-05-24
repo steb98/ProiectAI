@@ -5,6 +5,7 @@
 
 	require "header.php";
 	require "Database.class.php";
+	
 	$err = "";
 	$table = "<form>";
 
