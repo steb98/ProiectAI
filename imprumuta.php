@@ -20,7 +20,7 @@
         if($carte){
             $carte = new Book($carte);
             if($carte->getAvailability() == '0'){
-                $err = "Nu este disponibila aceasta carte";
+                $err = "<center><p>Aceasta carte nu mai este disponibila</p></center>";
             }else{
                 $conn = Database::getConn();
                 $sql = "SELECT * FROM users";
@@ -37,6 +37,8 @@
                 $form = $form . '<input type="submit" value = "Imprumuta"></input>';
             }
                 
+        }else{
+            $err = "<center><p>Nu exista aceasta carte</p></center>";
         }
         
 
@@ -48,19 +50,18 @@
             $id = $_GET["id"];
             $carte = (new Database)->getBookById($id);
             $carte = new Book($carte);
-            var_dump($carte);
             $conn = Database::getConn();
             $sql = "INSERT INTO borrows (id_book, id_user) VALUES (?, ?)";
             try{
                 $conn->prepare($sql)->execute([$id,$user]);
-                $err = "Imprumut realizat cu succes!";
+                $err = "<center><p>Imprumut realizat cu succes!</p></center>";
                 $sql = "UPDATE books SET availability = ? WHERE id=?";
                 if( (int)$carte->getAvailability() <= 0){
                     throw new Exception('Cartea nu mai este disponibila');
                 }
                 $conn->prepare($sql)->execute([($carte->getAvailability()) - 1, $id]);
             }catch(Exception $e){
-                $err = "Imprumutul nu a putut fi realizat." . $e->getMessage();
+                $err = "<center><p>Imprumutul nu a putut fi realizat." . $e->getMessage()."</p></center>";
             }
 
         }

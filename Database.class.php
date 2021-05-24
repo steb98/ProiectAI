@@ -3,6 +3,7 @@ require "Anunturi.class.php";
 require "Book.class.php";
 require "User.class.php";
 require "Borrow.class.php";
+require "Problem.class.php";
 
 class Database
 {
@@ -16,6 +17,7 @@ class Database
 
         if (is_null(self::$conn)) {
             self::$conn = new PDO(self::dsn,self::user,self::pass);
+            self::$conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
         }
         return self::$conn;
     }
@@ -72,6 +74,28 @@ class Database
         $sql = "SELECT * from users where id = ".$id;
         $conn = self::getConn();
         return new User($conn->query($sql)->fetch());
+    }
+
+    public static function insertProblem($problem){
+ 
+
+        $sql = "INSERT INTO problems(nume,prenume,email,category,details,id_user) values(?,?,?,?,?,?)";
+        $conn = self::getConn();
+        $stmt = $conn -> prepare($sql);
+        $data=[];
+        foreach($problem as $p){
+            $data[]=$p;
+        }
+        try{
+            $code = ($stmt->execute($data));
+            print("<center><p>Formular trimis cu succes</p></center>");
+            
+        }catch(Exception $e){
+            print("<center><p>".$e->getMessage()."</p></center>");
+            print('<br><center><p>Go <a href="index.php">home</a></p></center>');
+            die();
+        }
+        
     }
 
 

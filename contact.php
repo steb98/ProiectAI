@@ -2,35 +2,50 @@
 <html>
 <?php
 
-include "header.php";
+	include "header.php";
+	include "Database.class.php";
+	session_start();
+
+	if(isset($_POST["nume"])){
+		if(isset($_SESSION["loggedin_user"])){
+			$id_user = $_SESSION["loggedin_user"];
+		}else{
+			$id_user = null;
+		}
+		$_POST["id_user"] = $id_user;
+		//$_POST["id"] = "";
+		//$_POST["timestamp"] = "";
+		
+		Database::insertProblem($_POST);
+	}
 
 
 ?>
     <div class="Contact">
-      <form method="post enctype="multipart/formdata"">
+      <form method="post">
        
         <span id="FormNumeInputS" class="numeS">
-          <label for="FormNumeInput"><strong>Nume</strong></label>
-        <input type="text" name="FormNumeInput" id="FormNumeInput" value aria-label="Nume" aria-required="true" aria-invalid="false">
+          <label for="nume"><strong>Nume</strong></label>
+        <input type="text" name="nume" id="FormNumeInput" value aria-label="Nume" aria-required="true" aria-invalid="false">
         
         </span>
 
         <span id="FormPrenumeInputS" class="PrenumeS">
-          <label for="FormPrenumeInput"><strong>Prenume</strong></label>
-          <input type="text" name="FormPrenumeInput" id="FormPrenumeInput" value aria-label="Prenume" aria-required="true" aria-invalid="false">
+          <label for="prenume"><strong>Prenume</strong></label>
+          <input type="text" name="prenume" id="FormPrenumeInput" value aria-label="Prenume" aria-required="true" aria-invalid="false">
           
           </span>
 
         <span id="FormMailInputS" class="MailS">
-          <label for="FormMailInput"><strong> e-mail</strong></label>
-          <input type="email" name="FormMailInput" id="FormMailInput" value aria-label="Mail" aria-required="true" aria-invalid="false">
+          <label for="email"><strong> E-mail</strong></label>
+          <input type="email" name="email" id="FormMailInput" value aria-label="Mail" aria-required="true" aria-invalid="false">
           
           </span>
           </br>
           </br>
         <span id="FormTipProblemaS" class="TipProblemaS">
-          <label for="TipProblemaSelect"><strong> Tipul cererii</strong></label>
-          <select name="TipProblemaSelect" id="TipProblemaSelect">
+          <label for="category"><strong> Tipul cererii</strong></label>
+          <select name="category" id="TipProblemaSelect">
             <optgroup label="Lipsa">
             <option value = "LipsaCarte">Lipsa carte imprumutata</option>
             <option value = "LipsaCard">Lipsa card de acces</option>
@@ -53,14 +68,14 @@ include "header.php";
           
         </span>
         </br>
-        
+        <br>
         <span id="FormTextInputS" class="TextS" role="textbox" contenteditable>
           <!--role="textbox" contenteditable -->
           <!-- <textarea rows="5" cols="40"></textarea> -->
           <label for="FormTextInput"><strong> Problema</strong></label>
-           </br>
+           
           <!-- <input type="text" name="FormTextInput" id="FormTextInput" value aria-label="problema" aria-required="true" aria-invalid="false"> -->
-          <textarea rows="5" cols="40"></textarea>
+          <textarea name="details" rows="5" cols="40"></textarea>
         </span>
          </br>
           <input type="submit">
