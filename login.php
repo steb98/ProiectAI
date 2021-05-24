@@ -35,7 +35,7 @@
             if($row = $stmt->fetch()){
               $password = $row["password"];
               if($pass === $password){
-                $_SESSION["loggedin_user"] = $row["username"];
+                $_SESSION["loggedin_user"] = $row["id"];
                 $_SESSION["loggedin_role"] = $row["role"];
                 $err = "userul ".$_SESSION["loggedin_user"]." este logat";
               }else{
