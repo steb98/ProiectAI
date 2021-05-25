@@ -98,5 +98,22 @@ class Database
         
     }
 
+    public static function getProblems(){
+        $listaProblems = [];
+        $sql = "SELECT * from problems";
+        $conn = self::getConn();
+        foreach ($conn->query($sql) as $row) {
+            $listaProblems[] = new Problem($row);
+        }
+        return $listaProblems;
+    }
+
+    public static function removeProblemById($id){
+        $sql = "DELETE from problems where id = ?";
+        $conn = self::getConn();
+        $stmt = $conn -> prepare($sql);
+        $stmt->execute([$id]);
+    }
+
 
 }

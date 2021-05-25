@@ -23,6 +23,9 @@
     public function getId(){
         return $this->id;
     }
+    public function getIdUser(){
+        return $this->id_user;
+    }
     public function getNume(){
         return $this->nume;
     }
