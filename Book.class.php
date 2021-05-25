@@ -36,6 +36,10 @@
         public function getCategory(){
             return $this->category;
         }
+
+        public function setAvailability($availability){
+            $this->availability = $availability;
+        }
     }
 
 

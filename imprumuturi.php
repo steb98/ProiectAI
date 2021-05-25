@@ -7,7 +7,7 @@
 	require "Database.class.php";
 	
 	$err = "";
-	$table = "<form>";
+	$table = '<form method="post" action="return.php">';
 
 	$table =$table . '<table class = "lista"> <thead> <tr>';
 	//generare head tabel
@@ -16,6 +16,10 @@
 	$table = $table . '<th>User</th>';
 	$table = $table . '<th>Id User</th>';
 	$table = $table . '<th>Timestamp</th>';
+	if(isset($_SESSION["loggedin_role"]) && $_SESSION["loggedin_role"] == "admin"){
+		$table = $table . '<th>Returneaza</th>';
+	}
+
 	$table = $table . '</tr></thead>';
 	//inceput body tabel
 	$table = $table . '<tbody>';
@@ -51,6 +55,10 @@
 			$table = $table . '<td>' . $imprumut->getIdUser() . '</td>';
 			//timestamp
 			$table = $table . '<td>' . $imprumut->getTimestamp() . '</td>';
+
+			if(isset($_SESSION["loggedin_role"]) && $_SESSION["loggedin_role"] == "admin"){
+				$table = $table . '<td><button name="id" value = "'.$imprumut->getId().'">Returneaza</button></td>';
+			}
 
 			$table = $table . '</tr>';
 		}

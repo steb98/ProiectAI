@@ -48,9 +48,21 @@ class Database
         return $conn->query($sql)->fetch();
 
     }
+
+    public static function updateBook($book,$id){
+        $sql = "UPDATE books SET id=?, title=?, author=?, publisher=?, availability=?, category=? WHERE
+                                id= ?";
+        $pdo = self::getConn();
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute(
+            [ $book->getId(),$book->getTitle(),$book->getAuthor(),
+                        $book->getPublisher(),$book->getAvailability(),$book->getCategory(),$id ]
+                        );
+    }
+
     
     public static function getBorrows(){
-        $lisatBorrows = [];
+        $listaBorrows = [];
         $sql = "SELECT * from borrows";
         $conn = self::getConn();
         foreach ($conn->query($sql) as $row) {
@@ -58,6 +70,14 @@ class Database
         }
         return $listaBorrows;
     }
+
+    public static function getBorrowById($id){
+        $sql = "SELECT * from borrows where id = ". $id;
+        $conn = self::getConn();
+        return $conn->query($sql)->fetch();
+
+    }
+    
     
     public static function getBorrowsByIdUser($id_user){
         $listaBorrows = [];
@@ -68,6 +88,12 @@ class Database
         }
         return $listaBorrows;
     }
+    public static function removeBorrowById($id){
+        $sql = "DELETE from borrows where id = ?";
+        $conn = self::getConn();
+        $stmt = $conn -> prepare($sql);
+        $stmt->execute([$id]);
+    }
 
     public static function getUserById($id){
         $user;
@@ -77,8 +103,6 @@ class Database
     }
 
     public static function insertProblem($problem){
- 
-
         $sql = "INSERT INTO problems(nume,prenume,email,category,details,id_user) values(?,?,?,?,?,?)";
         $conn = self::getConn();
         $stmt = $conn -> prepare($sql);
